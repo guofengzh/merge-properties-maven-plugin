@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.planner</groupId>
+  <artifactId>merge-properties-maven-plugin-sample</artifactId>
+  <version>0.2</version>
+  <packaging>pom</packaging>
+
+ <repositories>
+    <repository>
+      <id>guofengzh-repo</id>
+      <name>The Maven Repository</name>
+      <url>https://github.com/guofengzh/mvn-repo/raw/master/releases</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>guofengzh-repo</id>
+      <name>The Maven Plugin Repository</name>
+      <url>https://github.com/guofengzh/mvn-repo/raw/master/releases</url>
+    </pluginRepository>
+  </pluginRepositories>
+  
+  <build>
+	<plugins>
+			
+      <plugin>
+        <groupId>org.planner</groupId>
+        <artifactId>merge-properties-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <configuration>
+          <merges>
+            <merge>
+              <targetFile>src/main/config/prop1.properties</targetFile>
+              <propertiesFiles>
+                <propertiesFile>src/main/config/prop1.properties</propertiesFile>
+                <propertiesFile>src/main/config/prop2.properties</propertiesFile>
+              </propertiesFiles>
+              <excludes>
+	             <exclude>B</exclude>
+	          </excludes>			  
+            </merge>
+          </merges>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>merge</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+	  
+	</plugins>
+  </build>
+	
+
+</project>
