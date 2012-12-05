@@ -48,7 +48,21 @@ public class Merge {
 	private String[] excludes;
 	
 	/**
-	 * The lines to exclude.
+	 * The lines to append value.
+	 * 
+	 * @parameter
+	 */
+	private String[] appends  ;
+	
+	/**
+	 * The lines to add value.
+	 * 
+	 * @parameter
+	 */
+	private String[] adds  ;
+
+	/**
+	 * The lines to encoding.
 	 * 
 	 * @parameter
 	 */
@@ -77,6 +91,20 @@ public class Merge {
      */
 	public String[] getExcludes() {
 		return this.excludes;
+	}
+
+    /**
+     * @return  the optional set of lines append
+     */
+	public String[] getAppends() {
+		return this.appends ;
+	}
+
+    /**
+     * @return  the optional set of lines append
+     */
+	public String[] getAdds() {
+		return this.adds ;
 	}
 
 	/**

@@ -154,6 +154,22 @@ public class MergeMojo extends AbstractMojo {
 			}
 		}
 		
+		// now deal with adds 
+		for ( String line : merge.getAdds() ) {
+			String key = this.getKey( line ) ;
+			if ( mergedLines.containsKey( key ) )
+				mergedLines.put( key, this.getValue( line ) ) ;
+			else
+				lines.add( line ) ;
+		}
+		
+		// now deal with appends 
+		for ( String line : merge.getAppends() ) {
+			String key = this.getKey( line ) ;
+			if ( mergedLines.containsKey( key ) )
+				mergedLines.put( key, mergedLines.get( key ) + this.getValue( line ) ) ;
+		}
+		
 		//now save the line
 		Writer writer = null;
 		FileOutputStream fos = null;
@@ -197,6 +213,20 @@ public class MergeMojo extends AbstractMojo {
 		     }
 		}
 		return key ;
+	}
+
+	private String getValue( String line )
+	{
+		String v = null ;
+		if ( line.length() > 0  && line.charAt( 0 ) !='#')
+		{   // not a comment
+  		    int n = line.indexOf( "=" ) ;
+		    if ( n != -1 )
+		    {
+			   v = line.substring( n+1 ).trim() ;
+		     }
+		}
+		return v ;
 	}
 
 	private String getKeyedValue( String line, Properties properties )
